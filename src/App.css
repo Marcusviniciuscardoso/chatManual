@@ -1,0 +1,90 @@
+body{
+  background-image: url("https://filestore.community.support.microsoft.com/api/images/52c43590-305e-4379-a977-ff5f7b2e6190?upload=true");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.App{
+  display: flex;
+  justify-content: end;
+  position: fixed;
+  bottom: 0px;
+  right: 15px;
+}
+.card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(202, 204, 204);
+  width: 40%;
+}
+
+.card-content{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.card-chat{width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+
+.card-content-id{
+  text-align: justify;
+}
+
+.card-content-h2{
+   text-align: justify;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.tab button {
+  width: 100%;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button:active {
+  background-color: rgb(138, 135, 135);
+}
+
+.tablinks.clicked{
+  background-color: black;
+}
+
+.tabcontent {
+  width: 100%;
+  padding: 6px 1px;
+  border: 1px solid #ccc;
+  border-top: none;
+  background:  #f1f1f1;
+}
+
+.windowTab{
+  min-Width:800px;
+  height: 500px;
+  position: fixed;
+  left: 250px;
+  bottom: 50px;
+}
