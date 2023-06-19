@@ -16,13 +16,25 @@ body{
   align-items: center;
   background-color: rgb(202, 204, 204);
   width: 40%;
+  transition: width 2s;
 }
 
-.card-content{
+.card:active{
+  width: 100%;
+}
+#card-content{
   width: 50%;
   display: flex;
   flex-direction: column;
   margin-right: 10px;
+}
+
+#content.show {
+  height: 200px;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .card-chat{width: 40%;
@@ -71,6 +83,13 @@ body{
 
 .tablinks.clicked{
   background-color: black;
+}
+.headerTab{
+  background:  #f1f1f1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 5px;
 }
 
 .tabcontent {

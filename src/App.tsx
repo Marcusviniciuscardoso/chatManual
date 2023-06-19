@@ -7,11 +7,13 @@ export default function App() {
   const [tabTime, setTabtime] = useState(1)
   const chooseTab = (number: Number) => {
     setTabtime(number)
-} 
+  }
 return (
   <div className="App">
       {(!openContent && !openWindow)&&(
-         <button onClick={setOpencontent}>ÍCONE</button>
+         <button id="myCard" onClick={()=>{
+          setOpencontent(true) 
+        }}>ÍCONE</button>
       )}
       {(!openWindow && openContent)&&(
          <button onClick={()=>{
@@ -22,7 +24,7 @@ return (
       <div className="card">
         {(openContent)&&(
         <div>
-        <div className="card-content">
+        <div id="card-content" className="hidden">
           <h2>Manual-word</h2>
           <p className="card-content-id">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus interdum facilisis
@@ -46,13 +48,14 @@ return (
         )}
         {(openWindow)&&(
           <div className='windowTab'>
+              <div className="headerTab"><h2>Ferramentas LibreOffice</h2></div>
               <div className="tab">
-                <button style={{backgroundColor: `${(tabTime === 1) ? 'white':''}`}} className="tablinks" onClick={()=>chooseTab(1)}>File</button>
-                <button style={{backgroundColor: `${(tabTime === 2) ? 'white':''}`}} className="tablinks" onClick={()=>chooseTab(2)}>Home</button>
-                <button style={{backgroundColor: `${(tabTime === 3) ? 'white':''}`}} className="tablinks" onClick={()=>chooseTab(3)}>Insert</button>
+                <button style={{backgroundColor: `${(tabTime === 1) ? '':'white'}`}} className="tablinks" onClick={()=>chooseTab(1)}>File</button>
+                <button style={{backgroundColor: `${(tabTime === 2) ? '':'white'}`}} className="tablinks" onClick={()=>chooseTab(2)}>Home</button>
+                <button style={{backgroundColor: `${(tabTime === 3) ? '':'white'}`}} className="tablinks" onClick={()=>chooseTab(3)}>Insert</button>
               </div>
             {(tabTime != null )&&(
-              <div style={{backgroundColor:'white'}} id="tabNumber" className="tabcontent">
+              <div style={{backgroundColor:''}} id="tabNumber" className="tabcontent">
                 <h3>Tab {tabTime} Content</h3>
                 <p>Some text here.</p>
               </div>
