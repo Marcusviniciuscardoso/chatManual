@@ -19,9 +19,11 @@ body{
   transition: width 2s;
 }
 
+/*
 .card:active{
   width: 100%;
 }
+*/
 #card-content{
   width: 50%;
   display: flex;
@@ -33,9 +35,11 @@ body{
   height: 200px;
 }
 
+/*
 .hidden {
   visibility: hidden;
 }
+*/
 
 .card-chat{width: 40%;
   display: flex;

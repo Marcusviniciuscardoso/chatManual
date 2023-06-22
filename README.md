@@ -1,1 +1,3 @@
 # chatManual
+
+npm install openai
