@@ -1,22 +1,22 @@
 import './App.css';
 import React, {useState} from 'react';
 import { Configuration, OpenAIApi } from 'openai';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function App() {
   const [openContent, setOpencontent] = useState(false)
-  const [openWindow, setOpenwindow] = useState(false)
-  const [tabTime, setTabtime] = useState(1)
-  const chooseTab = (number: Number) => {
-    setTabtime(number)
-  }
-
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [currentAnswer, setCurrentAnswer] = useState('');
-  console.log("opaaa", currentAnswer)
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
   })
   const openai = new OpenAIApi(configuration)
+
+  const getButtonid = () =>{
+    document.getElementById("card-chat-button")?.click()
+  }
 
   const generateResponse = async (newQuestion) => {
     let options = {
@@ -44,7 +44,7 @@ export default function App() {
 
 return (
   <div className="App">
-      {(!openContent && !openWindow)&&(
+      {(!openContent)&&(
          <button className="myCard" onClick={()=>{
           setOpencontent(true) 
         }}>ÍCONE</button>
@@ -54,7 +54,7 @@ return (
         <div className="card2">
         <div id="card-content" >
           <div className="smart-guide-header">
-            <p>SmartGuide</p>
+            <h1 style={{fontFamily: 'Paytone One, sans-serif', color: '#0FB06C', margin: '10px 0 0 0'}}>SmartGuide</h1>
             <img alt="smartGuide-logo" src="/assets/imagem.jpeg"  style={{ width: '50px', height: '50px'}}/>
           </div>
         </div>
@@ -75,28 +75,33 @@ return (
             </div>
           </div>
           <div className="card-chat">
-            <div>
-              <h5>Não encontrou sua resposta ? Pergunte ao chat</h5>
+            <div className="card-chat-content">
+              <h5 style={{textAlign: 'start', marginLeft: '15px'}}>Não encontrou sua resposta ? Pergunte ao chat</h5>
               <div className="card-chat-input">
                 <textarea
-                    className="form-control"
+                    className="card-chat-textarea"
                     placeholder="Digite sua pergunta"
                     value={currentQuestion}
                     onChange={(e) => setCurrentQuestion(e.target.value)}
-                  ></textarea>
-                  <button className="btn" onClick={() => generateResponse(currentQuestion)}>
+                  >
+                  </textarea>
+                  <button id="card-chat-button" style={{display: 'none'}} onClick={() => generateResponse(currentQuestion)}>
                     Resposta
                   </button>
+                  <FontAwesomeIcon icon={faChevronRight} className='card-chat-icon' onClick={getButtonid} />
               </div>
-              <div className="card-chat-output">
-                {currentQuestion && (
-                  <div className="answer-section">
-                    <p className="answer">{currentAnswer}</p>
-                    <div className="copy-icon">
-                      <i className="fa-solid fa-copy"></i>
+              <div className="card-chat-img-output">
+                <img alt="smartGuide-logo" src="/assets/logo-open-ai.png" style={{ width: '25px', height: '20px'}}></img>
+                <div className="card-chat-output">
+                  {currentQuestion && (
+                    <div className="answer-section">
+                      <p className="answer">{currentAnswer}</p>
+                      <div className="copy-icon">
+                        <i className="fa-solid fa-copy"></i>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
               <div className="card-doubt">
                 <div className="card-doubt-title">
@@ -112,22 +117,6 @@ return (
           </div>
          </div>
         </div>
-        {(openWindow)&&(
-          <div className='windowTab'>
-              <div className="headerTab"><h2>Ferramentas LibreOffice</h2></div>
-              <div className="tab">
-                <button style={{backgroundColor: `${(tabTime === 1) ? '':'white'}`}} className="tablinks" onClick={()=>chooseTab(1)}>File</button>
-                <button style={{backgroundColor: `${(tabTime === 2) ? '':'white'}`}} className="tablinks" onClick={()=>chooseTab(2)}>Home</button>
-                <button style={{backgroundColor: `${(tabTime === 3) ? '':'white'}`}} className="tablinks" onClick={()=>chooseTab(3)}>Insert</button>
-              </div>
-            {(tabTime != null )&&(
-              <div style={{backgroundColor:''}} id="tabNumber" className="tabcontent">
-                <h3>Tab {tabTime} Content</h3>
-                <p>Some text here.</p>
-              </div>
-            )},
-          </div>
-        )}
       </div>
       )}
       </div>
