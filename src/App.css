@@ -3,38 +3,53 @@ body{
   background-size: 100%;
   background-repeat: no-repeat;
 }
-.App{
+/*.App{
   display: flex;
   justify-content: end;
   position: fixed;
   bottom: 0px;
   right: 15px;
+  width: 50%;
+  height: 60%;
+}*/
+.App{
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
+
+.myCard{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
 .card{
   display: flex;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   justify-content: center;
   align-items: center;
-  background-color: rgb(202, 204, 204);
-  width: 40%;
-  transition: width 2s;
+  background-color: #D0EBE6;
+  width: 45%;
+  height: 64%;
+  border-radius: 4px;
+  /*transition: width 2s;*/
 }
 
-.card:active{
+.card2{
   width: 100%;
 }
+
 #card-content{
-  width: 50%;
   display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-}
-
-#content.show {
-  height: 200px;
-}
-
-.hidden {
-  visibility: hidden;
+  justify-content: space-between;
+  background-color: #1e6c4c;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
 }
 
 .card-chat{width: 40%;
@@ -45,12 +60,127 @@ body{
   text-align: justify;
 }
 
+.smart-guide-header{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-left: 50px;
+}
+
+.card-main{
+  display:flex;
+  flex-direction: row;
+}
+
+.card-option{
+  background-color: #68A098;
+  width: 40%;
+  border-radius: 15px;
+}
+
+.card-option-content{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.card-option-button{
+  background-color: #386659;
+  padding-bottom: 5px;
+  border-radius: 15px;
+  color: #E8fff5;
+  width: 80%;
+}
+
+.card-info{
+}
+
+.card-info-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 70px;
+}
+
 .card-content-id{
   text-align: justify;
 }
 
+.myCard{
+  background: blue;
+}
+
 .card-content-h2{
    text-align: justify;
+}
+
+.card-chat{
+  background-color: #BCDDE1;
+  border-radius: 15px;
+  border-top: 1px solid var(--neutral-light-1, #CCC);
+  border-right: 1px solid var(--neutral-light-1, #CCC);
+  border-bottom: 4px solid var(--neutral-light-1, #CCC);
+  border-left: 1px solid var(--neutral-light-1, #CCC);
+  margin-right: 20px;
+  width: 65%;
+  padding: 10px;
+  padding-bottom: 10px;
+}
+
+.card-chat-input{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.card-chat-input{
+  width: 70%;
+  padding: 10px;
+  margin-left: 15px;
+  background-color: #EBF0FF;
+  color: #000;
+  border-top: 1px solid var(--neutral-light-1, #CCC);
+  border-right: 1px solid var(--neutral-light-1, #CCC);
+  border-bottom: 4px solid var(--neutral-light-1, #CCC);
+  border-left: 1px solid var(--neutral-light-1, #CCC);
+}
+
+.card-chat-output{
+  width: 70%;
+  padding: 20px;
+  padding-bottom: 40px;
+  margin-left: 20px;
+  color: green;
+  background-color: #D0EBE6;
+  border-top: 1px solid var(--neutral-light-1, #CCC);
+  border-right: 1px solid var(--neutral-light-1, #CCC);
+  border-bottom: 4px solid var(--neutral-light-1, #CCC);
+  border-left: 1px solid var(--neutral-light-1, #CCC);
+}
+
+.card-doubt{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-doubt-title{
+  margin-left: 15px;
+}
+
+.card-doubt-links{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-left: 25px;
+}
+
+.custom-li{
+  font-size: 10px;
+  color: #1e6c4c;
 }
 
 .tab {

@@ -1,5 +1,6 @@
 import './App.css';
 import React, {useState} from 'react';
+import { Configuration, OpenAIApi } from 'openai';
 
 export default function App() {
   const [openContent, setOpencontent] = useState(false)
@@ -8,44 +9,107 @@ export default function App() {
   const chooseTab = (number: Number) => {
     setTabtime(number)
   }
+
+  const [currentQuestion, setCurrentQuestion] = useState('');
+  const [currentAnswer, setCurrentAnswer] = useState('');
+  console.log("opaaa", currentAnswer)
+  const configuration = new Configuration({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+  })
+  const openai = new OpenAIApi(configuration)
+
+  const generateResponse = async (newQuestion) => {
+    let options = {
+        model: 'text-davinci-003',
+        temperature: 0,
+        max_tokens: 100,
+        top_p: 1,
+        frequency_penalty: 0.0,
+        presence_penalty: 0.0,
+        stop: ['/'],
+    }
+
+    let completeOptions = {
+      ...options,
+      prompt: newQuestion,
+    }
+
+    const response = await openai.createCompletion(completeOptions);
+
+    if (response.data.choices) {
+      setCurrentQuestion(newQuestion);
+      setCurrentAnswer(response.data.choices[0].text);
+    }
+  }
+
 return (
   <div className="App">
       {(!openContent && !openWindow)&&(
-         <button id="myCard" onClick={()=>{
+         <button className="myCard" onClick={()=>{
           setOpencontent(true) 
         }}>ÍCONE</button>
       )}
-      {(!openWindow && openContent)&&(
-         <button onClick={()=>{
-          setOpenwindow(true); 
-          setOpencontent(false);
-        }}>Opções</button>
-      )}
+     {(openContent)&&(
       <div className="card">
-        {(openContent)&&(
-        <div>
-        <div id="card-content" className="hidden">
-          <h2>Manual-word</h2>
-          <p className="card-content-id">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus interdum facilisis
-            augue at ornare. Suspendisse ac faucibus nulla. Donec bibendum turpis eget erat interdum
-            bibendum. Donec purus ante, malesuada quis sapien non, volutpat finibus sapien. 
-            Suspendisse malesuada, augue id laoreet tincidunt, nisl urna feugiat enim, sit 
-            amet convallis diam felis at odio. Pellentesque sed tincidunt justo, et eleifend mi. 
-            Integer consequat luctus sem at vulputate. Ut in dolor lorem. Nullam accumsan est rhoncus ante vulputate venenatis. 
-            Sed faucibus orci sollicitudin pellentesque vehicula. Pellentesque risus metus, lobortis a
-            t metus eu, vulputate ultricies nunc. Fusce tempor sem non dapibus faucibus.
-          </p>
+        <div className="card2">
+        <div id="card-content" >
+          <div className="smart-guide-header">
+            <p>SmartGuide</p>
+            <img alt="smartGuide-logo" src="/assets/imagem.jpeg"  style={{ width: '50px', height: '50px'}}/>
+          </div>
         </div>
-        <div className="card-chat">
-          <h2 className="card-content-h2">Tirar Dúvidas com IA</h2>
-          <form>
-            <input type="text" placeholder="Insira dúvida aqui" className="card-chat-input"/>
-            <input value="Enviar" type="submit"/>
-          </form>
-       </div>
+        <div className="card-main">
+          <div className="card-option">
+            <div className="card-option-content">
+              <button className="card-option-button">Inserir</button>
+              <button className="card-option-button">Formatar</button>
+              <button className="card-option-button">Design</button>
+              <button className="card-option-button">Ferramentas</button>
+            </div>
+          </div>
+          <div classname="card-info">
+            <div className="card-info-content">
+              <img alt="smartGuide-logo" src="/assets/imagem.jpeg"  style={{ width: '150px', height: '150px'}}/>
+              <h5 style={{textAlign: 'center'}}>O SmartGuide é seu manual de
+              auxílio para o LibreOffice Writer.</h5>
+            </div>
+          </div>
+          <div className="card-chat">
+            <div>
+              <h5>Não encontrou sua resposta ? Pergunte ao chat</h5>
+                <textarea
+                    className="card-chat-input"
+                    placeholder="Digite sua pergunta"
+                    value={currentQuestion}
+                    onChange={(e) => setCurrentQuestion(e.target.value)}
+                  ></textarea>
+                  <button className="btn" onClick={() => generateResponse(currentQuestion)}>
+                    Resposta
+                  </button>
+              <div className="card-chat-output">
+                {currentQuestion && (
+                  <div className="answer-section">
+                    <p className="answer">{currentAnswer}</p>
+                    <div className="copy-icon">
+                      <i className="fa-solid fa-copy"></i>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="card-doubt">
+                <div className="card-doubt-title">
+                 <h5 style={{margin: 0}}>Registro de pesquisas</h5>
+                </div>
+                <div className="card-doubt-links">
+                  <li className="custom-li" style={{margin: 0}} >Onde formatar o parágrafo ?</li>
+                  <li className="custom-li" style={{margin: 0}}>Como colocar número da página ?</li>
+                  <li className="custom-li" style={{margin: 0}}>Qual o atalho para localizar um elemento ?</li>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
         </div>
-        )}
         {(openWindow)&&(
           <div className='windowTab'>
               <div className="headerTab"><h2>Ferramentas LibreOffice</h2></div>
@@ -63,6 +127,7 @@ return (
           </div>
         )}
       </div>
+      )}
       </div>
   );
 }
