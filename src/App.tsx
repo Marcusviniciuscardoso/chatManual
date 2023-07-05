@@ -77,8 +77,9 @@ return (
           <div className="card-chat">
             <div>
               <h5>Não encontrou sua resposta ? Pergunte ao chat</h5>
+              <div className="card-chat-input">
                 <textarea
-                    className="card-chat-input"
+                    className="form-control"
                     placeholder="Digite sua pergunta"
                     value={currentQuestion}
                     onChange={(e) => setCurrentQuestion(e.target.value)}
@@ -86,6 +87,7 @@ return (
                   <button className="btn" onClick={() => generateResponse(currentQuestion)}>
                     Resposta
                   </button>
+              </div>
               <div className="card-chat-output">
                 {currentQuestion && (
                   <div className="answer-section">
