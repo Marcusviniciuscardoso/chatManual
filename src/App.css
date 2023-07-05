@@ -125,6 +125,8 @@ body{
 .card-chat-content{
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  max-height: 300px;
 }
 
 .card-chat-input{
